@@ -24,17 +24,20 @@ public class Template {
         if(sqlSessionFactory == null){
             String resource = "mybatis-config.xml";
             try {
-                InputStream inputStream = Resources.getResourceAsStream(resource);
-                sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+                InputStream inputStream = Resources.getResourceAsStream(resource);          //필기 인터페이스 이용해서 Resource 파일 로드하기
+                sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);      // 필기 Resource 안에 정보로 팩토리 만들기(build)에 Resource
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        SqlSession sqlSession = sqlSessionFactory.openSession(false);
+        SqlSession sqlSession = sqlSessionFactory.openSession(false);                   // 필기 팩토리안에 정보로 세션열기
 
         System.out.println("SqlSessionFactory 의 hashcode() : " + sqlSessionFactory.hashCode());
         System.out.println("SqlSession의 hashCode() : " + sqlSession.hashCode());
+
+
+
 
         return sqlSession;
 
